@@ -1,0 +1,102 @@
+<style>
+    #line_chart {
+        height: 1px;
+        margin-top: opx;
+        margin-left: 25px;
+    }
+
+    .dinesh {
+        height: 80px;
+        width: 80px;
+    }
+
+    a:link {
+        text-decoration: none;
+    }
+
+    a:visited {
+        text-decoration: none;
+    }
+</style>
+
+<section class="content dashboard">
+    <div class="main-graph">
+        <div class="row clearfix">
+            <div class="col-xs-12 col-sm-6 col-md-8 col-lg-10 padding-0 overflow-hidden">
+                <div class="graph-area">
+                    <div id="line_chart"></div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- #END# Main Graph-->
+    <div class="page-heading">
+        <h1>Catlog Category</h1>
+        <ol class="breadcrumb">
+            <li><a href="/public/index">Home</a></li>
+            <li class="active">catlog category</li>
+        </ol>
+    </div>
+
+
+    <div class="panel panel-default">
+
+        <div class="panel-heading"> <button type="open-button" onclick="openForm()" class="btn btn-info add-new"><i
+                    class="fa fa-plus"></i><a href="/public/create_catlogcategory"> Add New</a></button></div>
+
+
+
+
+        <div class="panel-body">
+            <div class="table-responsive">
+                <table id="myTable" class="table js-exportable">
+
+                    <thead>
+                        <tr>
+                            <th>S.No</th>
+
+                            <th>Catlog Category Name</th>
+                            <th>Shop Name</th>
+                            <th>Shop Status</th>
+                            <th>Delete</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% for(var i=0; i < data.length; i++) { %>
+
+                            <tr>
+                                <td>
+                                    <%= i+1%>
+                                </td>
+                                <td>
+                                    <%=data[i].catlog_name%>
+                                </td>
+                                <td>
+                                    <%=data[i].shop_name%>
+                                </td>
+                                <td>
+                                    <% if(data[i].catlog_status==0) { %>
+                                        <a href="/public/categorys_status_update/<%=data[i].catlog_catId%>"
+                                            class="btn btn-success">Active</a>
+                                        <% } else { %>
+                                            <a href="/public/categorys_status_update/<%=data[i].catlog_catId%>"
+                                                class="btn btn-warning">Deactive</a>
+                                            <% } %>
+                                </td>
+
+                                <td><a href="/public/categorys_delete/<%=data[i].catlog_catId%>"
+                                        class="btn btn-circle  btn-lg  btn-danger"><i class="fa fa-trash"></i></a></td>
+
+                            </tr>
+                            <% } %>
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
+    </div>
+    <!-- #END# Task data -->
+    </div>
+</section>

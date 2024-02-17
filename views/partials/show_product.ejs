@@ -1,0 +1,133 @@
+<style>#line_chart {  
+    height: 1px;
+     margin-top: opx;
+     margin-left: 25px; } 
+     img {
+  border-radius: 50%;
+} 
+.ram{
+    background-color:rgba(172, 178, 179, 0.539);
+    border: none;
+  color: white;
+  padding: 12px 22px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  margin-left: 920px;
+  border-radius: 6px;
+
+}
+a:link {
+  text-decoration: none;
+}
+
+a:visited {
+  text-decoration: none;
+}
+
+.dashing{
+    width: 280px;
+    height: 40px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+
+#imgs{
+    border-radius: 8px;
+    border: 1px solid #ddd;
+  padding: 5px;
+  width: 130px;
+}
+</style>
+
+
+
+   
+
+
+
+
+      <section class="content dashboard">
+            <div class="main-graph">
+                    <div class="row clearfix">
+                        <div class="col-xs-12 col-sm-6 col-md-8 col-lg-10 padding-0 overflow-hidden">
+                            <div class="graph-area">
+                                 <div id="line_chart"></div>
+                            </div> 
+                        </div>
+                      
+                    </div>
+                </div>
+                <!-- #END# Main Graph-->
+            <div class="page-heading">
+                <h1>Manu List</h1>
+                <ol class="breadcrumb">
+                    <li><a href="/public/index">Home</a></li>
+                    <li class="active">Manu</li>
+                </ol>
+            </div>
+          <div class="panel panel-default">
+                <div class="panel-heading">
+                <button class="btn btn-info add-new"><i class="fa fa-plus"></i> <a href="/public/create_product">Add New</a></button></div>
+               
+
+               
+  
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table id="myTable" class="table js-exportable">
+                            
+                            <thead>
+                    <tr>
+                    <th>S.No</th>
+                    <th>Image</th>
+                  <!--  <th>categoryName</th> -->
+                    
+                    <th>Manu Name</th> 
+                    <th>Description</th>
+                    <th>Status</th>               
+                    <th>Update</th>               
+                    <th>Delete</th>
+        </tr>
+    </thead>
+        <tbody>
+            <% for(var i=0; i < data.length; i++) { %>
+                                   
+        <tr>
+         <td><%= i+1%></td>
+
+
+
+         <td><img src="/uploads/<%=data[i].images[0]%>"alt="img" id="imgs"></td>
+       <!-- <td><%=data[i].category%></td>-->
+      
+         <td><%=data[i].name%></td>
+         <td><%=data[i].description%></td>
+        <td>
+            
+            <% if(data[i].status==1) { %>
+                <a href=""  class="btn btn-warning">Deactive</a>
+                <% } else { %>
+                   <a href="/public/product/<%= data[i].product_id%>" class="btn btn-success">Active</a>
+                   
+                    <% } %>
+                </td>
+               
+    
+       
+<td><a href="/public/update_product/<%= data[i].product_id%>" class="btn btn-primary"><i class="fa fa-edit"></i></a></td>
+<td><a href ="/public/delete_product/<%= data[i].product_id%>"class="btn btn-circle  btn-sm  btn-danger"><i class="fa fa-trash"></i></a></td>
+
+
+                                        </tr>
+                                        <% } %>
+                               </tbody> 
+                        
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <!-- #END# Task data -->
+            </div>
+        </section>

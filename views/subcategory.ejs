@@ -1,0 +1,106 @@
+<%-include('./partials/header.ejs')%>
+<%-include('./partials/Left_Manu_bar.ejs')%>
+
+<style>#line_chart {  
+    height: 1px;
+     margin-top: opx;
+     margin-left: 25px; }
+     .dinesh{
+height: 90px;
+width: 90px;
+
+
+
+     }
+     #imgs{
+    border-radius: 8px;
+    border: 1px solid #ddd;
+  padding: 5px;
+  width: 80px;
+}
+     
+a:link {
+  text-decoration: none;
+}
+
+a:visited {
+  text-decoration: none;
+}
+     </style>
+
+      <section class="content dashboard">
+            <div class="main-graph">
+                    <div class="row clearfix">
+                        <div class="col-xs-12 col-sm-6 col-md-8 col-lg-10 padding-0 overflow-hidden">
+                            <div class="graph-area">
+                                 <div id="line_chart"></div>
+                            </div> 
+                        </div>
+                      
+                    </div>
+                </div>
+                <!-- #END# Main Graph-->
+            <div class="page-heading">
+                <h1>Subcategory</h1>
+                <ol class="breadcrumb">
+                    <li><a href="/public/index">Home</a></li>
+                    <li class="active">Subcategory</li>
+                </ol>
+            </div>
+
+
+            <div class="panel panel-default">
+            
+  <div class="panel-heading"> <button type="open-button" onclick="openForm()"class="btn btn-info add-new"><i class="fa fa-plus"></i><a href="/public/subcategory"> Add New</a></button></div>
+
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table id="myTable" class="table js-exportable">
+                            
+                            <thead>
+                              <tr>
+                                  <th>S.No</th>
+                                  <th>Image</th> 
+                                  <th>subcategory</th>
+                                  <th>Status</th> 
+                                  <th>Edit</th>
+                             <!-- <th>Delete</th> -->
+                                       
+                                    </tr>
+                                </thead>
+                                <tbody>
+            <% for(var i=0; i < data.length; i++) { %>
+                                   
+        <tr>
+         <td><%= i+1%></td>
+         <td><div class="dinesh"><img src="/uploads/<%=data[i].category_image%>"alt="cars"style="height:100px;weight:200px;" id="imgs"></td></div>
+        <td><%=data[i].subcategory%></td>
+        <!-- <td>
+            <% if(data[i].c_status==0) { %>
+            <a href="/public/category_update_status/<%=data[i]._id%>"  class="btn btn-success" >Active</a>
+            <% } else { %>
+            <a href="/public/category_update_status/<%=data[i]._id%>"  class="btn btn-warning">Deactive</a>
+            <% } %></td>  -->
+       
+        
+ 
+
+ <td><a href="/public/subcategory_update/<%=data[i]._id%>" class="btn btn-primary"><i class="fa fa-edit">Edit</i></a></td>
+
+
+<!-- <td><a href ="/public/category_delete/<%=data[i].category_id%>"class="btn btn-circle  btn-lg  btn-danger"><i class="fa fa-trash"></i></a></td> -->
+ 
+                                        </tr>
+                                        <% } %>
+                               </tbody> 
+                        
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <!-- #END# Task data -->
+            </div>
+        </section>
+
+
+<%-include('./partials/footers.ejs')%>

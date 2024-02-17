@@ -1,0 +1,86 @@
+<style>#line_chart {  
+    height: 1px;
+     margin-top: opx;
+     margin-left: 25px; }
+
+         
+a:link {
+  text-decoration: none;
+}
+
+a:visited {
+  text-decoration: none;
+}
+
+#imgs{
+    border-radius: 8px;
+    border: 1px solid #ddd;
+  padding: 5px;
+  width: 160px;
+}
+     </style>
+
+      <section class="content dashboard">
+            <div class="main-graph">
+                    <div class="row clearfix">
+                        <div class="col-xs-12 col-sm-6 col-md-8 col-lg-10 padding-0 overflow-hidden">
+                            <div class="graph-area">
+                                 <div id="line_chart"></div>
+                            </div> 
+                        </div>
+                      
+                    </div>
+                </div>
+                <!-- #END# Main Graph-->
+            <div class="page-heading">
+                <h1>Gallery</h1>
+                <ol class="breadcrumb">
+                    <li><a href="/public/index">Home</a></li>
+                    <li class="active">gallery</li>
+                </ol>
+            </div>
+
+
+            <div class="panel panel-default">
+            
+                <div class="panel-heading"> <button type="open-button" onclick="openForm()"class="btn btn-info add-new"><i class="fa fa-plus"></i><a href="/public/create_banner"> Add New</a></button></div>
+               
+           
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table id="myTable" class="table js-exportable">
+                            
+                            <thead>
+                                    <tr>
+                                        <th>S.No</th>
+                                        <th> IMAGE</th>                     <th>STATUS</th>   
+                                        <th>UPDATE</th>
+                                        <th>DELETE</th>
+                                    </tr>
+                                </thead>
+                                <tbody> 
+            <% for(var i=0; i < data.length; i++) { %>
+                                   
+        <tr>
+         <td><%= i+1%></td>
+ <td><img src="/uploads/<%=data[i].image%>"alt="img" id="imgs"></td>
+<td>
+            <% if(data[i].b_status==0) { %>
+            <a href="/public/banner_update_status/<%=data[i]._id%>"  class="btn btn-success" >Active</a>
+            <% } else { %>
+            <a href="/public/banner_update_status/<%=data[i]._id%>"  class="btn btn-warning">Deactive</a>
+            <% } %></td> 
+ <td><a href="/public/banner_update/<%=data[i]._id%>" class="btn btn-primary"><i class="fa fa-edit">Edit</i></a></td>
+
+<td><a href ="/public/banner_delete/<%= data[i]._id%>"class="btn btn-circle  btn-lg  btn-danger"><i class="fa fa-trash"></i></a></td>
+                                        </tr>
+                                        <% } %>
+                               </tbody> 
+                        
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <!-- #END# Task data -->
+            </div>
+        </section>

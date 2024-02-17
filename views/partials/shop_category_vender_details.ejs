@@ -1,0 +1,144 @@
+
+<style>#line_chart {
+    height: 1px;
+     margin-top: opx;
+     margin-left: 25px; }
+     img {
+  border-radius: 50%;
+}
+.ram{
+    background-color:rgba(168, 22, 105, 0.676);
+    border: none;
+  color: white;
+  padding: 12px 22px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  margin-left: 920px;
+  border-radius: 6px;
+
+}
+a:link {
+  text-decoration: none;
+}
+
+a:visited {
+  text-decoration: none;
+}
+
+.dashing{
+    width: 280px;
+    height: 40px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+
+#imgs{
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    padding: 5px;
+    width: 130px;
+}
+</style>
+                                                    
+
+     <section class="content dashboard">
+            <div class="main-graph">
+                    <div class="row clearfix">
+                        <div class="col-xs-12 col-sm-6 col-md-8 col-lg-10 padding-0 overflow-hidden">
+                            <div class="graph-area">
+                                 <div id="line_chart"></div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <!-- #END# Main Graph-->
+            <div class="page-heading">
+                <h1>Shop List</h1>
+                <ol class="breadcrumb">
+                    <li><a href="/public/index">Home</a></li>
+                    <li class="active">Shop </li>
+                </ol>
+            </div>
+
+          <div class="panel panel-default">
+                <div class="panel-heading">
+                <!-- <button class="btn btn-info add-new"><i class="fa fa-plus"></i> <a href="">
+                <button class="ram"><a href="/public/csvfile/upload">CSV file Upload</a></button> -->
+            </div>
+
+
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table id="myTable" class="table js-exportable table-bordered">
+
+                
+
+                      <thead>
+                     
+                </form>
+    
+                        <tr>
+                        <th>S.No</th>
+                        <th>Image</th>
+                        <th>Shop name</th>
+                        <th>ShopId</th>
+                        <th>Manager name</th>
+                        <th>Mobile</th>
+                        <th>Shop address</th>
+                        <th>Open time</th>
+                        <th>Close Time</th>
+                        <th>Minimum order</th>
+                        <th>Delivery charge</th>
+                        <th>Status</th>
+                        <th>Document</th>
+
+            </tr>
+        </thead> 
+            <tbody>
+                <% for(var i=0; i < data.length; i++) { %>
+
+            <tr>
+             <td><%= i+1%></td>
+
+
+
+             <td><img src="/uploads/<%=data[i].shop_image[0]%>"alt="img" style="height:100px;weight:200px;" id="imgs"></td>
+                <td><%=data[i].shop_name%></td>
+                <td><%=data[i]._id%></td>
+                <td><%=data[i].manager_name%></td>
+                <td><%=data[i].mobile%></td>
+                <td><%=data[i].shop_address%></td>
+                <td><%=data[i].open_time%></td>
+                <td><%=data[i].close_time%> </td>
+                <td><%=data[i].min_order%></td>
+                <td><%=data[i].delivery_charge%></td>
+            <td>
+
+                <% if(data[i].approve_status==1) { %>
+                    <a href="/public/approve_shop_status/<%=data[i]._id%>" class="btn btn-warning">Approved</a>
+                    <% } else { %>
+                       <a href="/public/approve_shop_status/<%= data[i]._id%>" class="btn btn-success">Approve</a>
+
+                        <% } %>
+                    </td>
+
+
+    <td><a href="/public/shop_vender_menu/<%= data[i]._id%>" class="btn btn-primary">View</a></td>
+
+
+
+                                            </tr>
+                                            <% } %>
+                                   </tbody>
+
+                                </table>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- #END# Task data -->
+            </div>
+        </section>

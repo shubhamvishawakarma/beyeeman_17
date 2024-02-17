@@ -1,0 +1,368 @@
+
+    <style type="text/css">#line_chart {  
+      height: 1px;
+       margin-top: opx;
+       margin-left: 100px; }
+       .form-horizontal{
+          margin-left: 25px;
+       }
+       .content{
+          margin-left: 118px;
+          margin-right: 5px;
+       }
+       .page-heading {
+    text-align: center;
+  }
+  
+       .box {
+          display: block;
+          background-color: rgba(200, 200, 200, .25);
+          transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+          overflow: hidden;
+          padding: 40px;
+      }
+  
+      .js--image-preview input {
+          width: 0.1px;
+          height: 0.1px;
+          opacity: 0;
+          overflow: hidden;
+          position: absolute;
+          z-index: -1;
+      }
+  
+      .js--image-preview label {
+          display: flex;
+          align-items: center;
+          width: 100%;
+          height: 100%;
+          font-weight: 400;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          cursor: pointer;
+          overflow: hidden;
+      }
+  
+      .js--image-preview label span {
+          display: inline-block;
+          width: 50%;
+          height: 100%;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          overflow: hidden;
+          vertical-align: middle;
+          text-align: center;
+      }
+  
+      .js--image-preview label span:hover i.material-icons {
+          color: lightgray;
+      }
+  
+      .js--image-preview {
+          height: 200px;
+          width: 100%;
+          position: relative;
+          overflow: hidden;
+          background-image: url("");
+          background-color: transparent;
+          background-position: center center;
+          background-repeat: no-repeat;
+          background-size: cover;
+          border: 1px dashed;
+          cursor: pointer;
+          text-align: center;
+          transition: background-color ease-in-out 150ms;
+      }
+  
+      .js--image-preview::after {
+          content: "photo_size_select_actual";
+          font-family: "Material Icons";
+          position: relative;
+          font-size: 4.5em;
+          color: #e6e6e6;
+          top: calc(50% - 2rem);
+          left: calc(50% - 2.25rem);
+          z-index: 0;
+      }
+  
+      .js--image-preview.js--no-default::after {
+          display: none;
+      }
+  
+      .js--image-preview:nth-child(2) {
+          background-image: url("http://bastianandre.at/giphy.gif");
+      }
+  
+      .drop {
+          display: block;
+          position: absolute;
+          background: rgba(95, 158, 160, 0.2);
+          border-radius: 100%;
+          transform: scale(0);
+      }
+  
+      .animate {
+          -webkit-animation: ripple 0.4s linear;
+          animation: ripple 0.4s linear;
+      }
+  
+  
+       </style>
+  
+        <section class="content dashboard">
+              <div class="main-graph">
+                      <div class="row clearfix">
+                          <div class="col-xs-12 col-sm-6 col-md-8 col-lg-10 padding-0 overflow-hidden">
+                              <div class="graph-area">
+                                   <div id="line_chart"></div>
+                              </div> 
+                          </div>
+                        
+                      </div>
+                  </div>
+                  <!-- #END# Main Graph-->
+              <div class="page-heading">
+                  <h1><b>Edit How to Trade</b></h1>
+                  <ol class="breadcrumb">
+                      <li><a href="/public/index"><b>Home</b></a></li>
+          <li class="active">How to Trade</b></li>
+                  </ol>
+              </div>
+  
+     
+  
+  
+  <section class="content">
+      <div class="page-body clearfix">
+  
+          <div class="panel panel-default">
+              <div class="panel-heading"><?php echo $title; ?></div>
+              <div class="panel-body">
+                  <form class="form-horizontal" action=" "  method="POST">
+                    <input type="hidden" name="id" value="<%= data[0].id%>">
+                      <div class="form-group">
+                          <div class="col-sm-12">
+                              <label><b>Title</b></label>
+                              <input type="text" class="form-control" name="title" id="title" value="<%= data[0].title %>"/>
+                          </div>                   
+                    
+                      </div>
+                 
+                      <div class="form-group">
+                         
+                      </div>
+              
+  
+                      <div class="form-group">
+                          <div class="col-sm-12">
+                              <label>Text</label>
+                              <textarea class="form-control no-resize" name="text" cols="30" rows="30" placeholder="Please give infos about you..."> <input type="textarea" id="text" name="text" value="<%= data[0].text %>"></textarea>
+                          </div>
+                      </div>
+  
+                      <div class="form-group">
+  
+                        
+                              </div>
+                          </div>
+                      </div>
+                      <div class="form-group">
+                          <button type="submit" class="btn btn-sm btn-success">Submit</button>
+                      </div>
+                  </form>
+              </div>
+          </div>
+      </div>
+      <section>
+          <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  
+          <script type='text/javascript'>
+              // baseURL variable
+              var baseURL = "<?php echo base_url(); ?>";
+  
+              $(document).ready(function() {
+  
+                  // maker_id change
+                  $('#maker_id').change(function() {
+                      var maker_id = $(this).val();
+  
+                      // AJAX request
+                      $.ajax({
+                          url: '<?= base_url() ?>Vendor/getModels',
+                          method: 'post',
+                          data: {
+                              maker_id: maker_id
+                          },
+                          dataType: 'json',
+                          success: function(response) {
+  
+                              // Remove options 
+                              $('#veriant_id').find('option').not(':first').remove();
+                              $('#model_id').find('option').not(':first').remove();
+  
+                              // Add options
+                              $.each(response, function(index, data) {
+                                  $('#model_id').append('<option value="' + data['id'] + '">' +
+                                      data['model_name'] + '</option>');
+                              });
+                          }
+                      });
+                  });
+  
+                  // model_id change
+                  $('#model_id').change(function() {
+                      var model_id = $(this).val();
+  
+                      // AJAX request
+                      $.ajax({
+                          url: '<?= base_url() ?>Vendor/getVeriants',
+                          method: 'post',
+                          data: {
+                              model_id: model_id
+                          },
+                          dataType: 'json',
+                          success: function(response) {
+  
+                              // Remove options
+                              $('#veriant_id').find('option').not(':first').remove();
+  
+                              // Add options
+                              $.each(response, function(index, data) {
+                                  $('#veriant_id').append('<option value="' + data['id'] + '">' +
+                                      data['variation_name'] + '</option>');
+                              });
+                          }
+                      });
+                  });
+  
+              });
+          </script>
+  
+          <script type="text/javascript">
+              function initImageUpload(box) {
+                  let uploadField = box.querySelector('.image-upload');
+  
+                  uploadField.addEventListener('change', getFile);
+  
+                  function getFile(e) {
+                      let file = e.currentTarget.files[0];
+                      checkType(file);
+                  }
+  
+                  function previewImage(file) {
+                      let thumb = box.querySelector('.js--image-preview'),
+                          reader = new FileReader();
+  
+                      reader.onload = function() {
+                          thumb.style.backgroundImage = 'url(' + reader.result + ')';
+                      }
+                      reader.readAsDataURL(file);
+                      thumb.className += ' js--no-default';
+                  }
+  
+                  function checkType(file) {
+                      let imageType = /image.*/;
+                      if (!file.type.match(imageType)) {
+                          throw 'Datei ist kein Bild';
+                      } else if (!file) {
+                          throw 'Kein Bild gewählt';
+                      } else {
+                          previewImage(file);
+                      }
+                  }
+  
+              }
+  
+              // initialize box-scope
+              var boxes = document.querySelectorAll('.box');
+  
+              for (let i = 0; i < boxes.length; i++) {
+                  let box = boxes[i];
+                  initDropEffect(box);
+                  initImageUpload(box);
+              }
+  
+  
+  
+              /// drop-effect
+              function initDropEffect(box) {
+                  let area, drop, areaWidth, areaHeight, maxDistance, dropWidth, dropHeight, x, y;
+  
+                  // get clickable area for drop effect
+                  area = box.querySelector('.js--image-preview');
+                  area.addEventListener('click', fireRipple);
+  
+                  function fireRipple(e) {
+                      area = e.currentTarget
+                      // create drop
+                      if (!drop) {
+                          drop = document.createElement('span');
+                          drop.className = 'drop';
+                          this.appendChild(drop);
+                      }
+                      // reset animate class
+                      drop.className = 'drop';
+  
+                      // calculate dimensions of area (longest side)
+                      areaWidth = getComputedStyle(this, null).getPropertyValue("width");
+                      areaHeight = getComputedStyle(this, null).getPropertyValue("height");
+                      maxDistance = Math.max(parseInt(areaWidth, 10), parseInt(areaHeight, 10));
+  
+                      // set drop dimensions to fill area
+                      drop.style.width = maxDistance + 'px';
+                      drop.style.height = maxDistance + 'px';
+  
+                      // calculate dimensions of drop
+                      dropWidth = getComputedStyle(this, null).getPropertyValue("width");
+                      dropHeight = getComputedStyle(this, null).getPropertyValue("height");
+  
+                      // calculate relative coordinates of click
+                      // logic: click coordinates relative to page - parent's position relative to page - half of self height/width to make it controllable from the center
+                      x = e.pageX - this.offsetLeft - (parseInt(dropWidth, 10) / 2);
+                      y = e.pageY - this.offsetTop - (parseInt(dropHeight, 10) / 2) - 30;
+  
+                      // position drop and animate
+                      drop.style.top = y + 'px';
+                      drop.style.left = x + 'px';
+                      drop.className += ' animate';
+                      e.stopPropagation();
+  
+                  }
+              }
+          </script>
+  
+          <script type="text/javascript">
+              function hideInsurance() {
+                  document.getElementById('insurance').style.display = 'none';
+              }
+  
+              function showInsurance() {
+                  document.getElementById('insurance').style.display = 'block';
+              }
+          </script>
+          <script type="text/javascript">
+              function fetchcity() {
+                  var state = $("#state_ids option:selected").val();
+  
+                  $.ajax({
+                      type: "POST",
+                      url: "<?php echo base_url(); ?>" + "Vendor/state_to_city",
+                      dataType: 'json',
+                      data: {
+                          stateid: state
+                      },
+                      success: function(response) {
+  
+  
+                          $('#city_id').find('option').not(':first').remove();
+  
+                          // Add options
+                          $.each(response, function(index, data) {
+                              $('#city_id').append('<option value="' + data.id + '">' + data.district +
+                                  '</option>');
+                          });
+                      }
+                  });
+  
+              };
+          </script>

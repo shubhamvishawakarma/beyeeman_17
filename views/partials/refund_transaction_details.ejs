@@ -1,0 +1,85 @@
+<style>#line_chart {  
+    height: 1px;
+     margin-top: opx;
+     margin-left: 25px; }
+     </style>
+
+      <section class="content dashboard">
+            <div class="main-graph">
+                    <div class="row clearfix">
+                        <div class="col-xs-12 col-sm-6 col-md-8 col-lg-10 padding-0 overflow-hidden">
+                            <div class="graph-area">
+                                 <div id="line_chart"></div>
+                            </div> 
+                        </div>
+                      
+                    </div>
+                </div>
+                <!-- #END# Main Graph-->
+            <div class="page-heading">
+                <h1>Transaction Report</h1>
+                <ol class="breadcrumb">
+                    <li><a href="/public/index">Home</a></li>
+                    <li class="active">Transaction Report</li>
+                </ol>
+            </div>
+
+
+            <div class="panel panel-default">
+             <div class="panel-body">
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li class="active">
+                            <a href="/public/transaction_report_list" role="tab" >Order Transactions</a></li>
+                            <li><a href="/public/refund_report_list" role="tab" >Refunds Transactions</a></li>
+                        </ul>
+                      
+                    <div class="panel-body">
+                        <div class="row">
+                            <h5>Filter Data</h5>
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                   <select class="form-control select2bs4" name="" style="width: 100%;">
+                                   <option>All</option>
+                                   <option>Cash</option>
+                                   <option>digitaly Paid</option>
+                                   <option>Customer Wallet</option>
+                                  </select>
+                                </div>
+                            </div>
+
+                              <div class="form-group">
+                                <button type="submit" class="btn btn-sm btn-success">Filter</button>
+                              </div>
+
+                        </div> 
+                        
+                        <br>
+                        <br>
+                        <div class="table-responsive">
+                            <table id="myTable" class="table js-exportable table-bordered">
+                            
+                            <thead>
+                                    <tr>
+                                        <th>S.No</th>
+                                        <th>Product</th>   
+                                        <th>Refund Id</th>
+                                        <th>Order Id</th>
+                                        <th>Shop Name</th>
+                                        <th>Payment Method</th>
+                                        <th>Payment Status</th>
+                                        <th>Paid By</th>
+                                        <th>Ammount</th>
+                                        <th>Transaction Type</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                 
+                               </tbody> 
+                              
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <!-- #END# Task data -->
+            </div>
+        </section>

@@ -1,0 +1,146 @@
+<style>#line_chart {  
+    height: 350px;
+     margin-top: 10px;
+     margin-left: 25px; }
+
+#myChart{
+    margin-top: 140px;
+    margin-left: 135px;
+    color: black;
+}
+
+
+     </style>
+     
+<!-- Dashboar -->
+
+<section class="content dashboard">
+    <div class="page-heading">
+        <h1>DASHBOARD</h1>
+    </div>
+
+    <div class="page-body">
+        <!-- Infobox -->
+        <div class="row clearfix">
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <div class="info-box infobox-type-5 ">
+                  <a href="/public/user_list">
+                    <div class="icon">
+                        <i class="material-icons">supervisor_account</i>
+                    </div>
+                    <div class="content">
+                        <div class="text">Total User</div>
+                        <div class="number"><%=data[0].usercount%></div>
+                    </div>
+                </div>
+              </a>
+            </div>
+
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <div class="info-box infobox-type-5">
+                  <a href="/public/shop_list">
+                    <div class="icon">
+                      <i class="material-icons">person_add</i>
+                    </div>
+                    <div class="content">
+                       <div class="text">Total Vender</div>
+                        <div class="number"><%=data[1].vendercount%></div>
+                    </div>
+                 
+                </div>
+              </a>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <div class="info-box infobox-type-5 ">
+                 <a href="/public/category_list">
+                    <div class="icon">
+                     <i class="material-icons">assignment</i>
+                    </div>
+                    
+                    <div class="content">
+                        <div class="text">Total Category</div>
+                        <div class="number"><%=data[2].categorycount%></div>
+                    </div>
+                </div>
+              </a>
+            </div>
+          
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <div class="info-box infobox-type-5 ">
+                  <a href="/public/master_product_list">
+                    <div class="icon">
+                      <i class="material-icons">shopping_cart</i>
+                    </div>
+                    <div class="content">
+                        <div class="text">Total Product</div>
+                        <div class="number"><%=data[4].productcount%></div>
+                    </div>
+                  
+                </div>
+              </a>
+            </div>
+           
+          
+        </div>
+        <!-- #END# Infobox -->
+        <!-- Main Graph -->     
+
+        <canvas id="myChart" style="width:90%;max-width:500px"></canvas>
+        <script>
+        var xValues = ["Italy", "France", "Spain", "USA", "Argentina"];
+        var yValues = [55, 49, 44, 24, 15];
+        var barColors = ["red", "green","blue","orange","brown"];
+        
+        new Chart("myChart", {
+          type: "bar",
+          data: {
+            labels: xValues,
+            datasets: [{
+              backgroundColor: barColors,
+              data: yValues
+            }]
+          },
+          options: {
+            legend: {display: false},
+            title: {
+              display: true,
+              text: "World Wine Production 2018"
+            }
+          }
+        });
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+        
+      
+
+      
+
+<canvas id="myChart" style="width:100%;max-width:600px"></canvas>
+<script>
+var xValues = ["Year", "Monthly", "Weekly", "Day"];
+var yValues = [100, 49, 44,35];
+var barColors = ["red", "green","blue","orange",];
+
+new Chart("myChart", {
+  type: "bar",
+  data: {
+    labels: xValues,
+    datasets: [{
+      backgroundColor: barColors,
+      data: yValues
+    }]
+  },
+  options: {
+    legend: {display: false},
+    title: {
+      display: true,
+      text: "Linear graph of BeyeemanDwa's Orders"
+    }
+  }
+});
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+
+
+
+</section>

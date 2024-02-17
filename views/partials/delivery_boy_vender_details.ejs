@@ -1,0 +1,132 @@
+
+<style>#line_chart {
+    height: 1px;
+     margin-top: opx;
+     margin-left: 25px; }
+     img {
+  border-radius: 50%;
+}
+.ram{
+    background-color:rgba(168, 22, 105, 0.676);
+    border: none;
+  color: white;
+  padding: 12px 22px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  margin-left: 920px;
+  border-radius: 6px;
+
+}
+a:link {
+  text-decoration: none;
+}
+
+a:visited {
+  text-decoration: none;
+}
+
+.dashing{
+    width: 280px;
+    height: 40px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+
+
+#imgs{
+    border-radius: 8px;
+    border: 1px solid #ddd;
+  padding: 5px;
+  width: 130px;
+}
+</style>
+
+<section class="content dashboard">
+    <div class="main-graph">
+        <div class="row clearfix">
+            <div class="col-xs-12 col-sm-6 col-md-8 col-lg-10 padding-0 overflow-hidden">
+                <div class="graph-area">
+                    <div id="line_chart"></div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- #END# Main Graph-->
+    <div class="page-heading">
+        <h1>Delivery Boy List (<%=list.shop_name%>)</h1>
+        <ol class="breadcrumb">
+            <li><a href="/public/index">Home</a></li>
+            <li class="active">Delivery Boy List </li>
+        </ol>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+
+
+        </div>
+
+
+        <div class="panel-body">
+            <ul class="nav nav-tabs" role="tablist">
+                <li>
+                            <a href="/public/shop_vender_menu/<%=list._id%>" role="tab" >Shop Details</a></li>
+                            <li><a href="/public/push_notification_service/<%=list._id%>" role="tab" >Push notification</a></li>
+                            <li class="active"><a href="/public/delivery_boy_vender_list/<%=list._id%>" role="tab" >Delivery boy</a></li>
+                            <li><a href="/public/user_qr_details/<%=list._id%>" role="tab" >Users</a></li>
+                            <li><a href="/public/product_vender_list/<%=list._id%>"" role="tab" >Products</a></li>
+                            <li><a href="/public/shop_vender_banner_list/<%=list._id%>" role="tab" >Banner</a></li>
+                            <li><a href="/public/report_vender_details/<%=list._id%>" role="tab" >Report</a></li>
+                           
+                            <li><a href="/public/order_vender_details/<%=list._id%>" role="tab" >Order</a></li>
+                            <li><a href="/public/vender_setting_details/<%=list._id%>" role="tab" >Setting</a></li>
+            </ul>
+            </br>
+            <div class="table-responsive">
+                <table id="myTable" class="table js-exportable">
+
+                    <thead>
+                        <tr>
+                            <th>S.No</th>
+                            <th>Image</th>
+                            <th>Mobile No</th>
+                            <th>Driver Name</th>
+                            <th>Action</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% for(var i=0; i < data.length; i++) { %>
+
+                            <tr>
+                                <td>
+                                    <%= i+1%>
+                                </td>
+                                <td><img src="/uploads/<%=data[i].image%>" alt="img" style="height:100px;weight:200px;"
+                                        id="imgs"></td>
+                                <td>
+                                    <%=data[i].mob%>
+                                </td>
+                                <td>
+                                    <%=data[i].driver_name%>
+                                </td>
+
+                                <td><a href="/public/delete_delivery_boy_vender/<%=data[i]._id%>"
+                                        class="btn btn-circle  btn-sm  btn-danger"><i class="fa fa-trash"></i></a></td>
+
+
+                            </tr>
+                            <% } %>
+                    </tbody>
+
+                </table>
+
+            </div>
+        </div>
+    </div>
+    <!-- #END# Task data -->
+    </div>
+</section>
+

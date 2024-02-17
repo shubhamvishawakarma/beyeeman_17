@@ -1,0 +1,66 @@
+<style>#line_chart {  
+    height: 1px;
+     margin-top: opx;
+     margin-left: 25px; }
+     </style>
+ 
+      <section class="content dashboard">
+            <div class="main-graph">
+                    <div class="row clearfix">
+                        <div class="col-xs-12 col-sm-6 col-md-8 col-lg-10 padding-0 overflow-hidden">
+                            <div class="graph-area">
+                                 <div id="line_chart"></div>
+                            </div> 
+                        </div>
+                      
+                    </div>
+                </div>
+                <!-- #END# Main Graph-->
+            <div class="page-heading">
+                <h1>Delivery Boy List</h1>
+                <ol class="breadcrumb">
+                    <li><a href="/public/index">Home</a></li>
+                    <li class="active">Delivery Boy List</li>
+                </ol>
+            </div>
+
+
+            <div class="panel panel-default">
+            
+  <div class="panel-heading"></div>
+           
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table id="myTable" class="table js-exportable">
+                            
+                            <thead>
+                                    <tr>
+                                        <th>S.No</th>
+                                        <th>Driver Name</th>
+                                        <th>Mobile No</th>     
+                                        <th>Driver Rating</th>
+                                        
+                                        <th>Delete</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                <% for(var i=0; i < data.length; i++) { %>
+                                 <tr>
+                                 <td><%= i+1%></td>
+                                 <td><%=data[i].name%></td>                                   
+                                 <td><%=data[i].mob%></td>
+                                 <td><%=data[i].rating%></td>
+                               
+                                 
+                                 <td><a href="/public/delete_delivery_boy/<%=data[i]._id%>" class="btn btn-danger">Delete</a></td>
+                                 </tr>
+                               </tbody> 
+                               <% } %>
+                               
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <!-- #END# Task data -->
+            </div>
+        </section>
